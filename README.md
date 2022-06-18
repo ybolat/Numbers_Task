@@ -14,3 +14,5 @@ Project will run on http://localhost:8000
 In the opened page you will see table with data from Google Sheets, with column price in RUB. 
 
 You can edit Google Sheets, and when you refresh the page, we will see edited data.
+
+![image](https://user-images.githubusercontent.com/59678276/174447771-b5d7008a-cd02-42ea-93d9-79c8c307e6fe.png)
