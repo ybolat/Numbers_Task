@@ -87,6 +87,7 @@ def getdata(request):
     # Getting current USDs currency
     usd = get_usd()
 
+
     # Saving data in database
     for values in sheet_value:
         i = 0
@@ -127,6 +128,11 @@ def getdata(request):
 
     # Getting data from database, order by id
     result = Order.objects.order_by('id')
+    # Deleting data from database
+    if len(result) > len(sheet_value) - 1:
+        for i in range(len(sheet_value), len(result) + 1):
+            order = Order.objects.get(id=i)
+            order.delete()
     # Returning in Json format
     return JsonResponse({"result": list(result.values())})
 
