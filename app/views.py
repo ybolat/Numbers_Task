@@ -87,7 +87,6 @@ def getdata(request):
     # Getting current USDs currency
     usd = get_usd()
 
-
     # Saving data in database
     for values in sheet_value:
         i = 0

@@ -23,30 +23,58 @@
         <tbody id = "result"></tbody>
     </table>
 
+    <div id="container" style="width: 1000px; height: 700px "></div>
 
 {# Connecting to Ajax #}
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <script>
+  <script  type="text/javascript">
     {# Ajax script to call getdate method, to get data from database #}
       $(document).ready(function () {
           $.ajax({
               url: "{% url 'getdata' %}",
               success: function (response) {
-                  for (let key in response.result) {
+                  let price = [];
+                  let data = [];
+                  for (let i in response.result) {
                       $("#result").append(
                           "<tr>" +
-                            "<th scope=\"row\">" + response.result[key].id + "</td>" +
-                            "<td>" + response.result[key].order_num + "</td>" +
-                            "<td>" + response.result[key].price_dollar + "</td>" +
-                            "<td>" + response.result[key].delivery_data + "</td>" +
-                            "<td>" + response.result[key].price_rub + "</td>" +
+                            "<th scope=\"row\">" + response.result[i].id + "</td>" +
+                            "<td>" + response.result[i].order_num + "</td>" +
+                            "<td>" + response.result[i].price_dollar + "</td>" +
+                            "<td>" + response.result[i].delivery_data + "</td>" +
+                            "<td>" + response.result[i].price_rub + "</td>" +
                           "</th>"
                       )
+                      data[i] = response.result[i].delivery_data;
+                      price[i] = response.result[i].price_dollar;
                   }
-              }
+                  new Highcharts.Chart('container',{
+                      title: {
+                        display: false,
+                        text: ''
+                        },
+                      xAxis: {
+                          categories: data,
+                          title: {
+                              text: 'Delivery data'
+                          },
+                      },
+                      yAxis: {
+                        title: {
+                            text: 'Price dollar'
+                            },
+                        },
+                        series: [
+                            {
+                                name: 'Price dollar',
+                                data: price
+                            }
+                        ]
+                    });
+                  }
+              })
           })
-      })
   </script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 </body>
 </html>
