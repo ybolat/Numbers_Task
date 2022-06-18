@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Developer</title>
+</head>
+{# connecting to bootstrap #}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+    {# creating table #}
+    <table class="table">
+        {# first row #}
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">заказ №</th>
+                <th scope="col">стоимость,$</th>
+                <th scope="col">срок поставки</th>
+                <th scope="col">стоимость,rub</th>
+            </tr>
+        </thead>
+        {# nexts rows #}
+        <tbody id = "result"></tbody>
+    </table>
+
+
+{# Connecting to Ajax #}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    {# Ajax script to call getdate method, to get data from database #}
+      $(document).ready(function () {
+          $.ajax({
+              url: "{% url 'getdata' %}",
+              success: function (response) {
+                  for (let key in response.result) {
+                      $("#result").append(
+                          "<tr>" +
+                            "<th scope=\"row\">" + response.result[key].id + "</td>" +
+                            "<td>" + response.result[key].order_num + "</td>" +
+                            "<td>" + response.result[key].price_dollar + "</td>" +
+                            "<td>" + response.result[key].delivery_data + "</td>" +
+                            "<td>" + response.result[key].price_rub + "</td>" +
+                          "</th>"
+                      )
+                  }
+              }
+          })
+      })
+  </script>
+</body>
+</html>
