@@ -2,6 +2,8 @@ In bracnh master you can see the code
 
 Download libraries, if you don't have them.
 
+Create database, and in yerassyl/yerassyl/setting.py change database name, user, password.
+
 In order to start project, first open console in the directory where manage.py file, and write "python manage.py makemigrations", then "python manage.py migrate", 
 and then write "python manage.py runserver"
 
