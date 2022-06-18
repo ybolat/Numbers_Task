@@ -7,23 +7,26 @@
 {# connecting to bootstrap #}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
-    {# creating table #}
-    <table class="table">
-        {# first row #}
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">№</th>
-                <th scope="col">заказ №</th>
-                <th scope="col">стоимость,$</th>
-                <th scope="col">срок поставки</th>
-                <th scope="col">стоимость,rub</th>
-            </tr>
-        </thead>
-        {# nexts rows #}
-        <tbody id = "result"></tbody>
-    </table>
+    {# table #}
+    <div class="float-left">
+        <table class="table" style="width: 650px">
+            {# first row #}
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">заказ №</th>
+                    <th scope="col">стоимость,$</th>
+                    <th scope="col">срок поставки</th>
+                    <th scope="col">стоимость,rub</th>
+                </tr>
+            </thead>
+            {# nexts rows #}
+            <tbody id = "result"></tbody>
+        </table>
+    </div>
 
-    <div id="container" style="width: 1000px; height: 700px "></div>
+    {# figure #}
+    <div class="float-right" id="container" style="width: 800px; height: 700px"></div>
 
 {# Connecting to Ajax #}
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -50,8 +53,8 @@
                   }
                   new Highcharts.Chart('container',{
                       title: {
-                        display: false,
-                        text: ''
+                        display: true,
+                        text: 'Chart'
                         },
                       xAxis: {
                           categories: data,
